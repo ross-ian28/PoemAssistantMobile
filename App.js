@@ -1,10 +1,9 @@
 import { View, StyleSheet } from 'react-native';
-import Welcome from './src/screens/Welcome/welcome.jsx';
-
+import AppStack from './src/screens/AppStack/AppStack';
 export default function App() {
   return (
     <View style={styles.container}>
-      <Welcome />
+      <AppStack />
     </View>
   );
 }
