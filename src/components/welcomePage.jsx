@@ -1,12 +1,49 @@
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 
 export default function WelcomePage({ navigation }) {
+  const toolData = [
+    {id: 1, tool_name: 'Dictionary'},
+    {id: 2, tool_name: 'Grammar Checker'},
+    {id: 3, tool_name: 'General Search'},
+    {id: 4, tool_name: 'Prompt Generator'},
+    {id: 5, tool_name: 'Rhyme'},
+    {id: 6, tool_name: 'Thesaurus'},
+    {id: 7, tool_name: 'Word Generator'}
+  ]; 
+
+  const renderItem = ({ item }) => (
+    <TouchableOpacity       
+      onPress={() => { navigation.navigate(item.tool_name) }}
+      style={{
+        padding: 10,
+        margin: 5,
+        borderRadius: 30,
+        width: 200,
+        borderWidth: 2,
+        alignItems: "center",
+        color: "white",
+        borderColor: "white"
+      }}
+    >
+      <Text style={{color: "white"}}>{item.tool_name}</Text>
+    </TouchableOpacity>
+  );
+
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-       <Text>Welcome page</Text>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "black" }}>
+        <View style={{marginTop: 30, alignItems: "center"}}>
+          <Text style={{fontSize: 36, color: "white", textAlign: "center", fontFamily: 'AncientMedium'}}>Welcome to Poem Assistant!</Text>
+          <Text style={{color: "white", fontSize: 18, marginTop: 10}}>Select a tool to get started</Text>
+        </View>
+       <FlatList
+          style={{marginTop: 15}}
+          data={toolData}
+          renderItem={renderItem}
+          keyExtractor={(item) => item.id}
+        />
       </View>
     );
-  }
+}
 
   const styles = StyleSheet.create({
     button: {
