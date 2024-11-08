@@ -3,7 +3,8 @@ import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Drawer = createDrawerNavigator();
 import { useNavigation, DrawerActions } from '@react-navigation/native'; 
-
+import { useFonts } from 'expo-font';
+import AppLoading from 'expo-app-loading';
 import Logo from './../../assets/logo.png'
 import WelcomePage from '../../components/welcomePage'
 import PromptGenerator from '../../components/promptGenerator'
@@ -11,19 +12,31 @@ import Dictionary from '../../components/dictionary'
 
 export default function AppStack({  }) {  
     const navigation = useNavigation();   
+    const [fontsLoaded] = useFonts({
+        'AncientMedium': require('./../../assets/fonts/AncientMedium.ttf'),
+        'OswaldVariable': require('./../../assets/fonts/OswaldVariable.ttf'),
+    });
+
+    if (!fontsLoaded) {
+        return <AppLoading />;
+    }
+
     return (
         <Drawer.Navigator 
             initialRouteName="Home"
             screenOptions={{
                 headerTitle: 'Poem Assistant',
                 headerStyle: {
-                    backgroundColor: "#36454F",
-                    height: 130
+                    backgroundColor: "black",
+                    height: 130,
+                    borderBottomColor: "black"
                 },
                 headerTitleStyle: {
                     fontWeight: 'bold',
-                    fontSize: 30,
+                    fontSize: 40,
                     color: "#CD7DCD",
+                    fontFamily: "AncientMedium",
+                    marginBottom: 10
                 },
                 headerRight: () => (
                     <Image

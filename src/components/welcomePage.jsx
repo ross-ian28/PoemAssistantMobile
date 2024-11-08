@@ -1,4 +1,5 @@
-import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity, ImageBackground } from 'react-native';
+import Backdrop from './../assets/images/purple_victorian_background.jpg'
 
 export default function WelcomePage({ navigation }) {
   const toolData = [
@@ -30,9 +31,10 @@ export default function WelcomePage({ navigation }) {
   );
 
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', backgroundColor: "black" }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+        <ImageBackground style={{flex: 1, alignItems: "center", width: "100%", height: "100%"}}source={Backdrop}>
         <View style={{marginTop: 30, alignItems: "center"}}>
-          <Text style={{fontSize: 36, color: "white", textAlign: "center", fontFamily: 'AncientMedium'}}>Welcome to Poem Assistant!</Text>
+          <Text style={{fontSize: 36, color: "white", textAlign: "center"}}>Welcome to Poem Assistant!</Text>
           <Text style={{color: "white", fontSize: 18, marginTop: 10}}>Select a tool to get started</Text>
         </View>
        <FlatList
@@ -41,6 +43,7 @@ export default function WelcomePage({ navigation }) {
           renderItem={renderItem}
           keyExtractor={(item) => item.id}
         />
+        </ImageBackground>
       </View>
     );
 }
