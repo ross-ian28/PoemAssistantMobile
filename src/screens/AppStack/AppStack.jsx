@@ -1,4 +1,4 @@
-import { Image, TouchableOpacity } from 'react-native';
+import { Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 const Drawer = createDrawerNavigator();
@@ -68,3 +68,25 @@ export default function AppStack({  }) {
         </Drawer.Navigator>
     );
 }
+
+const styles = StyleSheet.create({
+    page_container: {
+      alignItems: 'center', height: "100%"
+    },
+    lace_button: {
+      borderWidth: 1,
+      borderColor: "white",
+      backgroundColor: "black",
+      height: 70,
+      paddingVertical: 15,
+      width: 180,
+      alignItems: "center"
+    },
+    lace_button_border: {
+      height: 90, 
+      width: 220, 
+      position: "absolute", 
+      bottom: -10, 
+      resizeMode: "stretch"
+    }
+  });
