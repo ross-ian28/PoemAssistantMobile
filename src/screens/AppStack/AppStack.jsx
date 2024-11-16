@@ -50,14 +50,16 @@ export default function AppStack({  }) {
                     </TouchableOpacity>
                 ),
                 drawerStyle: {
-                    backgroundColor: "#CD7DCD"
+                    backgroundColor: "#222222"
                 },
                 drawerLabelStyle: {
-                    color: "white"
+                    color: "white",
+                    fontSize: 26,
+                    fontFamily: "OswaldVariable"
                 },
-                drawerActiveBackgroundColor: '#7289DA',
-                drawerActiveTintColor: '#FFFFFF',
-                drawerInactiveTintColor: 'blue'
+                drawerActiveBackgroundColor: "#CD7DCD",
+                drawerActiveTintColor: 'green',
+                drawerInactiveTintColor: 'yellow'
             }}
         >          
             <Drawer.Screen name="Home" component={WelcomePage} />
@@ -65,6 +67,10 @@ export default function AppStack({  }) {
             <Drawer.Screen name="Grammar Checker" component={Dictionary} />
             <Drawer.Screen name="General Search" component={Dictionary} />
             <Drawer.Screen name="Prompt Generator" component={PromptGenerator} />
+            <Drawer.Screen name="Rhyme" component={PromptGenerator} />
+            <Drawer.Screen name="Thesaurus" component={PromptGenerator} />
+            <Drawer.Screen name="Word Generator" component={PromptGenerator} />
+            <Drawer.Screen name="Spell Check" component={PromptGenerator} />
         </Drawer.Navigator>
     );
 }

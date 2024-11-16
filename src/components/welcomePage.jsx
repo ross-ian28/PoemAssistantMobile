@@ -15,19 +15,16 @@ export default function WelcomePage({ navigation }) {
   ]; 
 
   const renderItem = ({ item }) => (
-    <View styles={{alignItems: "center"}}>
-      <Image
-        onPress={() => { 
-          navigation.navigate(item.tool_name) 
-        }}        
+    <View styles={{alignItems: "center", justifyContent: "center"}}>
+      <Image      
         style={styles.lace_button_border}
         source={LaceButton}
       />
       <TouchableOpacity style={styles.lace_button}
-                onPress={() => { 
-                  navigation.navigate(item.tool_name) 
-                }} >
-        <Text style={{ color: "white", fontSize: 24, paddingBottom: 5, fontFamily: "OswaldVariable" }}>
+        onPress={() => { 
+          navigation.navigate(item.tool_name) 
+        }} >
+        <Text style={{ color: "white", textAlign: "center", fontSize: 22, fontFamily: "OswaldVariable" }}>
           {item.tool_name}
         </Text>
       </TouchableOpacity>
@@ -36,18 +33,21 @@ export default function WelcomePage({ navigation }) {
 
     return (
       <ImageBackground 
-        style={{flex: 1, alignItems: "center", width: "100%", height: "100%"}}
-        source={Backdrop} 
+        style={{flex: 1, alignItems: "center", justifyContent: "center", width: "100%", height: "100%"}}
+        source={Backdrop}
       >
-        <View style={{marginTop: 5, alignItems: "center", zIndex: 1}}>
+        <View style={{alignItems: "center", zIndex: 1, marginTop: 15}}>
           <Text style={{fontSize: 36, color: "white", textAlign: "center"}}>Welcome to Poem Assistant!</Text>
           <Text style={{color: "white", fontSize: 18, marginTop: 5}}>Select a tool to get started</Text>
         </View>
         <FlatList
           data={toolData}
           renderItem={renderItem}
-          keyExtractor={(item) => item.id}
-          style={{ fontFamily: "OswaldVariable", zIndex: 20, width: 200}}
+          numColumns={2}
+          key={2}
+          columnWrapperStyle={{  }}
+          keyExtractor={(item) => item.id.toString()}
+          style={{ fontFamily: "OswaldVariable", zIndex: 20, width: "100%"}}
         />
       </ImageBackground>  
     );
@@ -71,21 +71,22 @@ export default function WelcomePage({ navigation }) {
       borderWidth: 1,
       borderColor: "white",
       backgroundColor: "black", 
-      height: 62,
-      width: 180,
+      height: 85,
+      width: 160,
       alignItems: "center",
-      marginTop: 22,
+      marginTop: 50,
       zIndex: 3,
-      paddingTop: 10,
-      marginLeft: 10
+      paddingTop: 20,
+      marginLeft: 40
     },
     lace_button_border: {
-      height: 80, 
-      width: 220, 
+      height: 110, 
+      width: 200, 
       position: "absolute", 
       resizeMode: "stretch",
-      bottom: -8,
-      left: -10,
-      zIndex: 2
+      bottom: -12,
+      left: 10,
+      zIndex: 2,
+      marginLeft: 10
     }
   });
