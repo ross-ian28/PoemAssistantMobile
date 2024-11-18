@@ -6,7 +6,7 @@ import LaceBorder from './../assets/images/white-lace-border.png'
 import LaceButton from './../assets/images/white-lace-button.png'
 import LoadingButterflyIcon from './../assets/images/loading_butterfly_icon.gif'
 
-export default function Dictionary({ navigation }) {
+export default function Thesaurus({ navigation }) {
     const [promptText, setPromptText] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
@@ -18,7 +18,7 @@ export default function Dictionary({ navigation }) {
         const data = {
           word: promptText
         };
-        const res = await axios.post('https://poem-assistant-api.onrender.com/dictionary', data);
+        const res = await axios.post('https://poem-assistant-api.onrender.com/thesaurus', data);
         setResponse(res.data.message)
         setLoading(false)
       } catch (error) {
@@ -32,10 +32,10 @@ export default function Dictionary({ navigation }) {
         <ImageBackground style={styles.image_background_style} source={Backdrop}>
         <View style={styles.header_container}>
           <Text style={styles.header_text}>
-            Dictionary
+            Thesaurus
           </Text>
           <Text style={styles.header_sub_text}>
-            What word would you like defined?
+            What word would you like to match?
           </Text>
         </View>
         <View style={styles.form_container}>

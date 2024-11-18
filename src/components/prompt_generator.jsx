@@ -1,24 +1,25 @@
-import { TouchableOpacity, Text, View, Image, StyleSheet, ImageBackground, ScrollView, TextInput } from 'react-native';
+import { TouchableOpacity, Text, View, Image, StyleSheet, ImageBackground, ScrollView } from 'react-native';
 import { useState } from 'react';
+import InputSpinner from "react-native-input-spinner";
 import axios from 'axios';
 import Backdrop from './../assets/images/purple_victorian_background.jpg'
+import LaceBackdrop from './../assets/images/white-lace-backdrop.png'
 import LaceBorder from './../assets/images/white-lace-border.png'
 import LaceButton from './../assets/images/white-lace-button.png'
 import LoadingButterflyIcon from './../assets/images/loading_butterfly_icon.gif'
 
-export default function Dictionary({ navigation }) {
-    const [promptText, setPromptText] = useState("");
+export default function PromptGenerator({ navigation }) {
+    const [numberOfPrompts, setNumberOfPrompts] = useState(1);
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
   
     const handleSubmit = async () => {
-      // Add edge case checks: one word only, only words
       setLoading(true)
       try {
         const data = {
-          word: promptText
+          amount: numberOfPrompts
         };
-        const res = await axios.post('https://poem-assistant-api.onrender.com/dictionary', data);
+        const res = await axios.post('https://poem-assistant-api.onrender.com/prompt-generator', data);
         setResponse(res.data.message)
         setLoading(false)
       } catch (error) {
@@ -32,17 +33,27 @@ export default function Dictionary({ navigation }) {
         <ImageBackground style={styles.image_background_style} source={Backdrop}>
         <View style={styles.header_container}>
           <Text style={styles.header_text}>
-            Dictionary
+            Prompt Generator
           </Text>
           <Text style={styles.header_sub_text}>
-            What word would you like defined?
+            How many prompts would you like to generate?
           </Text>
         </View>
         <View style={styles.form_container}>
-          <TextInput
-            value={promptText}
-            onChangeText={(text) => setPromptText(text)}
-            style={styles.prompt_input} 
+          <Image style={styles.number_background_image} source={LaceBackdrop}/>          
+          <InputSpinner
+            width={300}
+            max={10}
+            min={1}
+            step={1}
+            fontFamily={"AncientMedium"}
+            color={"#130124"}
+            fontSize={45}
+            value={numberOfPrompts}
+            onChange={(num) => {
+             setNumberOfPrompts(num)
+            }}
+            style={{marginBottom: 8}}
           />
           <View style={styles.button_container}>
             {loading ? (
@@ -71,11 +82,13 @@ export default function Dictionary({ navigation }) {
         </View>
         <View style={styles.response_container}>
           <Image style={styles.response_border} source={LaceBorder}/>
+          <ScrollView style={styles.scroll_view_styling} contentContainerStyle={{ paddingBottom: 200  }}>
             <View style={styles.response_text_container}>
                 <Text style={styles.response_text}>
                   {response}
                 </Text>
             </View>
+          </ScrollView>
         </View>
         <View style={styles.speech_arrow}/>
         <Image style={styles.edgar_allan_image} source={require('./../assets/images/EdgarAllan.webp')}/>
@@ -121,16 +134,11 @@ export default function Dictionary({ navigation }) {
       marginTop: 20, 
       alignItems: "center"
     },
-    prompt_input: {
-      borderColor: "white",      
-      borderWidth: 2,                               
-      color: "white",
-      height: 50,
-      width: 300,
-      textAlign: "center",
-      fontSize: 20,
-      fontFamily: "OswaldVariable",
-      paddingBottom: 5
+    number_background_image: {
+      position: "absolute", 
+      height: 115, 
+      width: 115, 
+      bottom: 68
     },
     button_container: {
       marginTop: 25, 
@@ -164,8 +172,7 @@ export default function Dictionary({ navigation }) {
       fontFamily: "OswaldVariable"
     },
     response_container: {
-      flex: 1,
-      justifyContent: "center"
+      flex: 1
     },
     response_border: {
       height: 465, 

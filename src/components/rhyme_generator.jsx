@@ -6,19 +6,19 @@ import LaceBorder from './../assets/images/white-lace-border.png'
 import LaceButton from './../assets/images/white-lace-button.png'
 import LoadingButterflyIcon from './../assets/images/loading_butterfly_icon.gif'
 
-export default function Dictionary({ navigation }) {
+export default function RhymeGenerator({ navigation }) {
     const [promptText, setPromptText] = useState("");
     const [response, setResponse] = useState("");
     const [loading, setLoading] = useState(false);
   
     const handleSubmit = async () => {
-      // Add edge case checks: one word only, only words
+      // Add edge case checks: 
       setLoading(true)
       try {
         const data = {
-          word: promptText
+          message: promptText
         };
-        const res = await axios.post('https://poem-assistant-api.onrender.com/dictionary', data);
+        const res = await axios.post('https://poem-assistant-api.onrender.com/rhyme_generator', data);
         setResponse(res.data.message)
         setLoading(false)
       } catch (error) {
@@ -32,10 +32,10 @@ export default function Dictionary({ navigation }) {
         <ImageBackground style={styles.image_background_style} source={Backdrop}>
         <View style={styles.header_container}>
           <Text style={styles.header_text}>
-            Dictionary
+            Rhyme Generator
           </Text>
           <Text style={styles.header_sub_text}>
-            What word would you like defined?
+            What word would you like rhymed?
           </Text>
         </View>
         <View style={styles.form_container}>

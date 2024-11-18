@@ -7,8 +7,14 @@ import { useFonts } from 'expo-font';
 import AppLoading from 'expo-app-loading';
 import Logo from './../../assets/logo.png'
 import WelcomePage from '../../components/welcomePage'
-import PromptGenerator from '../../components/promptGenerator'
+import PromptGenerator from '../../components/prompt_generator'
 import Dictionary from '../../components/dictionary'
+import GrammarChecker from '../../components/grammar_checker';
+import GeneralSearch from '../../components/general_search';
+import RhymeGenerator from '../../components/rhyme_generator';
+import Thesaurus from '../../components/thesaurus';
+import WordGenerator from '../../components/word_generator';
+import SpellCheck from '../../components/spell_check';
 
 export default function AppStack({  }) {  
     const navigation = useNavigation();   
@@ -64,13 +70,13 @@ export default function AppStack({  }) {
         >          
             <Drawer.Screen name="Home" component={WelcomePage} />
             <Drawer.Screen name="Dictionary" component={Dictionary} />
-            <Drawer.Screen name="Grammar Checker" component={Dictionary} />
-            <Drawer.Screen name="General Search" component={Dictionary} />
+            <Drawer.Screen name="Grammar Checker" component={GrammarChecker} />
+            <Drawer.Screen name="General Search" component={GeneralSearch} />
             <Drawer.Screen name="Prompt Generator" component={PromptGenerator} />
-            <Drawer.Screen name="Rhyme" component={PromptGenerator} />
-            <Drawer.Screen name="Thesaurus" component={PromptGenerator} />
-            <Drawer.Screen name="Word Generator" component={PromptGenerator} />
-            <Drawer.Screen name="Spell Check" component={PromptGenerator} />
+            <Drawer.Screen name="Rhyme" component={RhymeGenerator} />
+            <Drawer.Screen name="Thesaurus" component={Thesaurus} />
+            <Drawer.Screen name="Word Generator" component={WordGenerator} />
+            <Drawer.Screen name="Spell Check" component={SpellCheck} />
         </Drawer.Navigator>
     );
 }
